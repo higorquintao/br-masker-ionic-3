@@ -23,6 +23,13 @@ export class BrModel {
 export class BrMaskerIonic3 implements OnInit, ControlValueAccessor {
   @Input() brmasker: BrModel = new BrModel();
 
+  @HostListener('input', ['$event'])
+  input(event: any): void {
+    const value = this.returnValue(event.target.value);
+    this.writeValue(value);
+    event.target.value = value;
+  }
+  
   @HostListener('keyup', ['$event'])
   inputKeyup(event: any): void {
     const value = this.returnValue(event.target.value);
